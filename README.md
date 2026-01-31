@@ -36,6 +36,25 @@ docker build -t hello-agent .
 docker run -p 8000:8000 hello-agent
 ```
 
+## Deploy (Railway/Render/Fly)
+
+Because this repo includes a Dockerfile, you can deploy it on most PaaS providers in a few clicks.
+
+### Railway (example)
+1. Create a new Railway project → **Deploy from GitHub repo**
+2. Select `kovrex/kovrex-fastapi-agent-template`
+3. Add environment variables (optional):
+   - `AGENT_SECRET_KEY` (recommended once live)
+   - `APP_VERSION` (optional)
+4. Deploy and copy the public service URL
+
+### Other providers
+- **Render**: New Web Service → Docker
+- **Fly.io**: `fly launch` (uses Dockerfile)
+- **Cloud Run**: build from repo and deploy container
+
+Then use the deployed base URL as the endpoint in Kovrex.
+
 ## Registering on Kovrex
 
 In the Kovrex Operator dashboard:
