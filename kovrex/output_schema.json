@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HelloAgentOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "title": "Success",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message", "version"],
+      "properties": {
+        "message": { "type": "string", "maxLength": 4000 },
+        "version": { "type": "string", "maxLength": 64 }
+      }
+    },
+    {
+      "title": "Refusal",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["refused", "refusal_code", "refusal_reason"],
+      "properties": {
+        "refused": { "type": "boolean", "const": true },
+        "refusal_code": {
+          "type": "string",
+          "enum": ["OUT_OF_SCOPE", "UNAUTHORIZED"]
+        },
+        "refusal_reason": { "type": "string", "maxLength": 4000 }
+      }
+    }
+  ]
+}
